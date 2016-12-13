@@ -1,0 +1,8 @@
+<form action="/users/<%= session[:user]['id'] %>" method="post">
+  <label>Name: <input type="text" name="user[name]" value="<%= session[:user]['name'] %>"></label>
+  <label>Email: <input type="text" name="user[email]" value="<%= session[:user]['email'] %>"></label>
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Update">
+</form>
+<%= link_to "Delete Account", user_path(session[:user]['id']), method: :delete %>
