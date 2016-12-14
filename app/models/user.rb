@@ -1,12 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :secrets
-  has_many :likes, dependent: :destroy
-  has_many :secrets_liked, through: :likes, source: :secret
-
+  # Validations
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
-
-  validates :name, presence: true, length: { minimum: 2 }
   validates :email, :presence => true, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
+  validates :fn, :ln, :presence => true, length: { minimum: 2 }
 end

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   root 'users#index'
-  get '/dashboard' => 'users#dashboard'
-  resources :users, :sessions, :secrets, :likes
+
+  resources :users, except: [:destroy]
+  resources :sessions, only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

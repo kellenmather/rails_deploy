@@ -1,4 +1,21 @@
-<h3>Welcome</h3>
-
-<%= link_to "Register", new_user_path %>
-<%= link_to "Login", new_session_path %>
+<div>
+  <h3>Register Below</h3>
+  <form class="form_class" action="/users" method="post">
+    <label>First Name: <input type="text" name="user[fn]"></label>
+    <label>Last Name: <input type="text" name="user[ln]"></label>
+    <label>Email: <input type="text" name="user[email]"></label>
+    <label>Password: <input type="password" name="user[password]"></label>
+    <label>Password Confirmation: <input type="password" name="user[password_confirmation]"></label>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Register">
+  </form>
+</div>
+<div>
+  <h3>Login</h3>
+  <form class="form_class" action="/sessions" method="post">
+    <label>Email: <input type="text" name="user[email]"></label>
+    <label>Password: <input type="text" name="user[password]"></label>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Login">
+  </form>
+</div>
