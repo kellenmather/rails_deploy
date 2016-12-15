@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :shoes, dependent: :destroy
+  has_many :sales, dependent: :destroy
+
   has_secure_password
 
   # Validations

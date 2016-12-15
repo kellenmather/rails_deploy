@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
+  get '/main' => 'users#main'
+  get '/dashboard/:id' => 'users#show'
+  post '/sale/:id' => 'shoes#buy'
   root 'users#index'
 
-  resources :users, except: [:destroy]
+
+  resources :users, except: [:destroy, :show]
   resources :sessions, only: [:create, :destroy]
+  resources :shoes, only: [:create, :destroy, :index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

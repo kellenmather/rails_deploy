@@ -8,22 +8,10 @@
 </head>
 <body>
   <% if flash[:errors] %>
-      <% flash[:errors].each do |e| %>
-        <p><%= e %></p>
-      <% end %>
+    <% flash[:errors].each do |e| %>
+      <p><%= e %></p>
     <% end %>
-    <% if current_user %>
-      <form action="/sessions/<%= session[:user_id] %>" method='post'>
-        <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-        <input type='hidden' name='_method' value='delete'>
-        <input type='submit' value='Log Out'>
-      </form>
-      <form action="/users/<%= session[:user_id] %>">
-        <input type='submit' value='Edit Profile'>
-      </form>
-      <a href="/events">Event Dashboard</a>
-    <% end %>
+  <% end %>
 <%= yield %>
-
 </body>
 </html>

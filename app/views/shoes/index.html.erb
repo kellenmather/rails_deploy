@@ -1,0 +1,24 @@
+<div class="top_nav">
+  <p>Hi <%= current_user.fn %></p>
+  <a href="/sessions/<%= session[:user_id] %>" data-method="delete">Log Out</a>
+  <a href="/dashboard/<%= session[:user_id] %>">Go to Dashboard</a>
+</div>
+<h3>All Products</h3>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Seller</th>
+    <th>Date Posted</th>
+    <th>Amount</th>
+    <th>Action</th>
+  </tr>
+  <% @shoes.each do |shoe| %>
+  <tr>
+    <td><%= shoe.name %></td>
+    <td><%= shoe.user.fn %></td>
+    <td><%= shoe.date %></td>
+    <td><%= shoe.price %></td>
+    <td><a href="/sale/<%= shoe.id %>" data-method="post">Buy</a></td>
+  </tr>
+  <% end %>
+</table>

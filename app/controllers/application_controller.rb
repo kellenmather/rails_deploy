@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if session[:user_id] == nil
   end
 
+  def require_correct_user
+    user = User.find_by(id: params[:id])
+    redirect_to "/dashboard/#{current_user.id}" if current_user != user
+  end
+
 end

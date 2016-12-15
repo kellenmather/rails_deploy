@@ -1,0 +1,70 @@
+<div class="top_nav">
+  <p>Hi <%= current_user.fn %></p>
+  <a href="/sessions/<%= session[:user_id] %>" data-method="delete">Log Out</a>
+  <a href="/shoes">Go to All Products</a>
+</div>
+<div class="">
+  <p>Sell Product</p>
+  <form action="/shoes" method="post">
+    <label>Name: <input type="text" name="shoe[name]"></label>
+    <label>Amount: <input type="text" name="shoe[price]"></label>
+    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+    <input type="submit" name="Sell">
+  </form>
+</div>
+
+<p>Your products that are not yet sold:</p>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Date Posted</th>
+    <th>Amount</th>
+    <th>Action</th>
+  </tr>
+  <% @shoes_for_sale.each do |shoe| %>
+  <tr>
+    <td><%= shoe.name %></td>
+    <td><%= shoe.date %></td>
+    <td><%= shoe.price %></td>
+    <td><a href="/shoes/<%= shoe.id %>" data-method="delete">Remove</a></td>
+  </tr>
+  <% end %>
+</table>
+
+<p>Sales</p>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Date Bought</th>
+    <th>Buyer</th>
+    <th>Amount</th>
+  </tr>
+  <% @shoes_sold.each do |shoe| %>
+  <tr>
+    <td><%= shoe.name %></td>
+    <td><%= shoe.date_bought_sold %></td>
+    <td><%= shoe.seller_name %></td>
+    <td><%= shoe.price %></td>
+  </tr>
+  <% end %>
+</table>
+<p>Total: <%= @earnings %></p>
+
+<p>Purchases</p>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Date Bought</th>
+    <th>Seller</th>
+    <th>Amount</th>
+  </tr>
+  <% @shoes_bought.each do |shoe| %>
+  <tr>
+    <td><%= shoe.name %></td>
+    <td><%= shoe.date_bought_sold %></td>
+    <td><%= shoe.user.fn %></td>
+    <td><%= shoe.price %></td>
+  </tr>
+  <% end %>
+</table>
+<p>Total: <%= @total %></p>

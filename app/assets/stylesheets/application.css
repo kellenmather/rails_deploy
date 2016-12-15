@@ -22,3 +22,25 @@
    width: 500px;
    padding: 2px;
  }
+.top_nav p, .top_nav a {
+  display: inline-block;
+}
+.top_nav a {
+  float: right;
+  margin-right: 20px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
